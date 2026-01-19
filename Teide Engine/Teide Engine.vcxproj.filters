@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{f3bf03b7-dd09-4b5e-8104-26fb57034426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\math">
+      <UniqueIdentifier>{6283ba50-12e5-4aeb-802f-444c6620c29e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\math\public">
+      <UniqueIdentifier>{65668582-5185-44d8-a43b-2035e484c557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\math\private">
+      <UniqueIdentifier>{d4cfb781-5eaf-4a5d-9fad-acb39b316a28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\os">
+      <UniqueIdentifier>{b6220153-293c-4c91-bf0f-37da64d776ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\os\platform">
+      <UniqueIdentifier>{dfa4b540-0067-49af-9864-b966bb11c6d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\os\platform\windows">
+      <UniqueIdentifier>{5d8a8cf2-3d98-4de7-b0f8-fdfe3ade69d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\teide">
+      <UniqueIdentifier>{acb919d9-049e-4cf4-b914-d45ccf6b7efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{14f83970-c31c-48d6-bb1e-f254536e9132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\os\platform\windows\public">
+      <UniqueIdentifier>{a6ab6214-8133-4e0f-8eee-b2fc5ae3275f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\os\platform\windows\private">
+      <UniqueIdentifier>{4a764169-ffb1-4270-8f18-b2a554b72418}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vect3.h">
+      <Filter>core\math\public</Filter>
+    </ClInclude>
+    <ClInclude Include="core.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>core\teide</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>core\os\platform\windows\public</Filter>
+    </ClInclude>
+    <ClInclude Include="platform_windows.h">
+      <Filter>core\os\platform\windows\public</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Vect3.cpp">
+      <Filter>core\math\private</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>core\teide</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>core\os\platform\windows\private</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

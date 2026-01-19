@@ -1,0 +1,49 @@
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Folders
+bin/
+build/
+Debug/
+Release/
+x64/
+x86/
+out/
+obj/
+ipch/
+*.pch
+
+# Visual C++ Cache Files
+*.idb
+*.pdb
+*.ipdb
+*.iobj
+*.log
+
+# Windows Image/Build Files
+*.dll
+*.exe
+*.lib
+*.obj
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build/
+*.cmake
+CTestTestfile.cmake
+Testing/
+
+# JetBrains Rider
+.idea/
+
+# NuGet Packages
+*.nupkg
+packages/
