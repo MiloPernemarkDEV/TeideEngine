@@ -4,6 +4,59 @@
 // Event -> PeekMessage -> DispatchMessage -> WindowProc
 // Events are handled using messages 
 
+static void CenterWindow(HWND hWnd, int width, int height)
+{
+    RECT rc = { 0, 0, width, height };
+    DWORD style = (DWORD)GetWindowLongPtr(hWnd, GWL_STYLE);
+    AdjustWindowRect(&rc, style, FALSE);
+
+    int winWidth = rc.right - rc.left;
+    int winHeight = rc.bottom - rc.top;
+
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+
+    int x = (screenWidth - winWidth) / 2;
+    int y = (screenHeight - winHeight) / 2;
+
+    SetWindowPos(hWnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+}
+
+static void SetWindowSize(HWND hWnd, int width, int height)
+{
+    // Get monitor work area (excluding taskbar)
+    HMONITOR monitor = MonitorFromWindow(hWnd, MONITOR_DEFAULTTONEAREST);
+    MONITORINFO mi = { sizeof(mi) };
+    GetMonitorInfo(monitor, &mi);
+
+    int screenW = mi.rcWork.right - mi.rcWork.left;
+    int screenH = mi.rcWork.bottom - mi.rcWork.top;
+
+    // Clamp width/height to screen size
+    width = min(width, screenW);
+    height = min(height, screenH);
+
+    DWORD style = (DWORD)GetWindowLongPtr(hWnd, GWL_STYLE);
+
+    RECT rect = { 0, 0, width, height };
+    AdjustWindowRect(&rect, style, FALSE);
+
+    int winWidth = rect.right - rect.left;
+    int winHeight = rect.bottom - rect.top;
+
+    int x = mi.rcWork.left + (screenW - winWidth) / 2;
+    int y = mi.rcWork.top + (screenH - winHeight) / 2;
+
+    SetWindowPos(
+        hWnd,
+        nullptr,
+        x, y,
+        winWidth, winHeight,
+        SWP_NOZORDER
+    );
+}
+
+
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -27,7 +80,6 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         EndPaint(hWnd, &ps);
         return 0;
     }
-    // Keep WM_PANT until DirectX12 is set up 
     }
 
     return DefWindowProc(hWnd, uMsg, wParam, lParam);
@@ -65,7 +117,7 @@ window::window()
     m_hWnd = CreateWindowExW(
         0,
         CLASS_NAME,
-        L"Title",
+        L"TeideEngine",
         style,
         250, 250,
         rect.right - rect.left,
@@ -75,6 +127,9 @@ window::window()
         m_hInstance,
         nullptr
     );
+
+        CenterWindow(m_hWnd, width, height);
+
 
     if (!m_hWnd)
     {
@@ -102,8 +157,6 @@ bool window::ProcessMessages()
         {
         return false;
         }
-
-
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
